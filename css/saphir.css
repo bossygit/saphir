@@ -1,0 +1,269 @@
+:root {
+    --saphir-blue: #1e4976;
+    --saphir-blue-light: #3d7ab5;
+    --saphir-blue-lighter: #5b9bd5;
+    --saphir-blue-muted: rgba(30, 73, 118, 0.22);
+    --saphir-blue-dark: #0f2a44;
+    --saphir-gold: #f59e0b;
+    --saphir-gold-hover: #fbbf24;
+    --saphir-bg-page: #ffffff;
+    --saphir-bg-elevated: #f1f5f9;
+    --saphir-bg-input: #ffffff;
+    --saphir-bg-deep: #0f172a;
+    --saphir-glass: rgba(255, 255, 255, 0.88);
+    --saphir-border-footer: rgba(30, 73, 118, 0.18);
+    --saphir-border-ui: rgba(30, 73, 118, 0.2);
+}
+
+body {
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+body ::selection {
+    background: rgba(251, 191, 36, 0.35);
+    color: #0f172a;
+}
+
+.font-serif {
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+.glass-panel {
+    background: var(--saphir-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+html {
+    background-color: var(--saphir-bg-page);
+}
+
+.bg-saphir-page {
+    background-color: var(--saphir-bg-page);
+}
+
+.bg-saphir-nav-scrolled {
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 1px 0 rgba(30, 73, 118, 0.08), 0 8px 30px rgba(15, 42, 68, 0.06);
+}
+
+.bg-saphir-menu {
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.bg-saphir-elevated {
+    background-color: var(--saphir-bg-elevated);
+}
+
+.bg-saphir-input {
+    background-color: var(--saphir-bg-input);
+}
+
+/* Scrim hero (texte clair sur photo) */
+.bg-saphir-scrim-65 {
+    background-color: rgba(10, 36, 58, 0.65);
+}
+
+.bg-saphir-scrim-75 {
+    background-color: rgba(10, 36, 58, 0.75);
+}
+
+.bg-saphir-panel-20 {
+    background-color: rgba(30, 73, 118, 0.06);
+}
+
+.bg-saphir-panel-30 {
+    background-color: rgba(30, 73, 118, 0.08);
+}
+
+.bg-saphir-panel-35 {
+    background-color: rgba(30, 73, 118, 0.1);
+}
+
+.bg-saphir-panel-40 {
+    background-color: rgba(30, 73, 118, 0.12);
+}
+
+.bg-saphir-panel-50 {
+    background-color: rgba(30, 73, 118, 0.14);
+}
+
+.border-saphir-footer {
+    border-color: var(--saphir-border-footer);
+}
+
+.border-saphir-ui {
+    border-color: var(--saphir-border-ui);
+}
+
+/* Accueil : fondu vers le blanc sous le hero */
+.bg-gradient-saphir-hero-up {
+    background: linear-gradient(to top, var(--saphir-bg-page), rgba(15, 42, 68, 0.28), transparent);
+}
+
+/* Cartes image accueil : bas vers blanc */
+.bg-gradient-saphir-card-up {
+    background: linear-gradient(to top, #ffffff, rgba(15, 42, 68, 0.5), transparent);
+}
+
+/* En-têtes de pages intérieures : texte blanc sur photo */
+.bg-gradient-saphir-page-b {
+    background: linear-gradient(to bottom, rgba(10, 36, 58, 0.88), rgba(10, 36, 58, 0.78), rgba(10, 36, 58, 0.92));
+}
+
+.bg-gradient-saphir-page-b-soft {
+    background: linear-gradient(to bottom, rgba(10, 36, 58, 0.9), rgba(10, 36, 58, 0.8), rgba(10, 36, 58, 0.94));
+}
+
+.bg-gradient-saphir-restaurant-hero {
+    background: linear-gradient(to top, rgba(10, 36, 58, 0.85), transparent, rgba(10, 36, 58, 0.45));
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.35);
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+/* Accents lisibles sur fond clair */
+.text-saphir-accent {
+    color: var(--saphir-blue);
+}
+
+.text-saphir-light {
+    color: var(--saphir-blue);
+}
+
+.text-saphir-lighter {
+    color: var(--saphir-blue-light);
+}
+
+.text-saphir {
+    color: var(--saphir-blue);
+}
+
+.text-saphir-deep {
+    color: var(--saphir-blue-dark);
+}
+
+.text-saphir-gold {
+    color: #d97706;
+}
+
+.hover\:text-saphir-gold-hover:hover {
+    color: var(--saphir-gold-hover);
+}
+
+.hover\:text-saphir-lighter:hover {
+    color: var(--saphir-blue-lighter);
+}
+
+.hover-text-saphir-blue:hover {
+    color: var(--saphir-blue);
+}
+
+/* Or — CTA */
+.btn-saphir-gold {
+    background-color: var(--saphir-gold);
+    color: var(--saphir-bg-deep);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-saphir-gold:hover {
+    background-color: var(--saphir-gold-hover);
+    color: var(--saphir-bg-deep);
+}
+
+.btn-saphir-gold-outline {
+    border: 1px solid rgba(217, 119, 6, 0.65);
+    color: var(--saphir-blue);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-saphir-gold-outline:hover {
+    background-color: var(--saphir-gold);
+    color: var(--saphir-bg-deep);
+    border-color: var(--saphir-gold);
+}
+
+.link-saphir-gold {
+    color: #d97706;
+    transition: color 0.2s ease;
+}
+
+.link-saphir-gold:hover {
+    color: var(--saphir-gold-hover);
+}
+
+.hover\:text-saphir-gold:hover {
+    color: #d97706;
+}
+
+.hover-text-saphir-gold:hover {
+    color: #d97706;
+}
+
+.hover-border-saphir-deep:hover {
+    border-color: rgba(30, 73, 118, 0.45);
+}
+
+.hover-border-saphir-gold:hover {
+    border-color: rgba(217, 119, 6, 0.55);
+}
+
+.border-saphir-focus:focus,
+.border-saphir-focus:focus-visible {
+    border-color: var(--saphir-blue-light) !important;
+    outline: none;
+}
+
+.u-focus-ring-saphir:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--saphir-blue);
+}
+
+.hover-border-saphir-soft:hover {
+    border-color: rgba(30, 73, 118, 0.45);
+}
+
+.hover-border-saphir-card:hover {
+    border-color: rgba(30, 73, 118, 0.35);
+}
+
+.border-saphir {
+    border-color: var(--saphir-blue-light);
+}
+
+.gradient-saphir-overlay {
+    background: linear-gradient(to right, rgba(15, 42, 68, 0.45), transparent);
+}
+
+.text-saphir-jungle {
+    color: var(--saphir-blue);
+}
+
+.border-saphir-jungle {
+    border-color: var(--saphir-blue-light);
+}
+
+.ring-saphir-jungle {
+    --tw-ring-color: var(--saphir-blue);
+}
+
+.btn-saphir-muted {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    transition: background-color 0.2s ease;
+}
+
+.btn-saphir-muted:hover {
+    background-color: #cbd5e1;
+}
+
+body.mobile-nav-open {
+    overflow: hidden;
+}
+
+#mobile-menu-panel:not(.hidden) {
+    pointer-events: auto;
+}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements &amp; réceptions | Hôtel Saphir Brazzaville</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/saphir.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-saphir-page text-zinc-800 text-lg antialiased">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-panel border-b border-zinc-200/80">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img src="logo-hotel-saphir.svg" alt="Hôtel Saphir" class="h-10 w-auto" width="120" height="71">
+                    </a>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="flex items-center gap-6 xl:gap-8">
+                        <a href="index.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Accueil</a>
+                        <a href="chambres.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Chambres</a>
+                        <a href="experience.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Expérience</a>
+                        <a href="restaurant.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Restaurant</a>
+                        <a href="evenements.html" class="text-sm text-saphir-accent font-medium">Événements</a>
+                        <a href="a-propos.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">À propos</a>
+                        <a href="contact.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="contact.html#reserver" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-sm btn-saphir-gold transition-colors">Réserver</a>
+                </div>
+                <div class="lg:hidden flex items-center gap-3">
+                    <a href="contact.html#reserver" class="inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded-sm btn-saphir-gold transition-colors">Réserver</a>
+                    <button type="button" id="mobile-menu-btn" class="text-zinc-600 hover-text-saphir-blue p-2 focus:outline-none u-focus-ring-saphir rounded-sm" aria-expanded="false" aria-controls="mobile-menu-panel" aria-label="Ouvrir le menu">
+                        <i data-lucide="menu" class="w-6 h-6" stroke-width="1.5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu-panel" class="fixed inset-0 z-[60] bg-saphir-menu backdrop-blur-md lg:hidden hidden flex flex-col pt-24 px-6 pb-8" aria-hidden="true">
+        <button type="button" id="mobile-menu-close" class="absolute top-5 right-6 text-zinc-600 hover-text-saphir-blue p-2 focus:outline-none rounded-sm" aria-label="Fermer le menu">
+            <i data-lucide="x" class="w-7 h-7" stroke-width="1.5"></i>
+        </button>
+        <nav class="flex flex-col gap-1 text-lg border-t border-zinc-200 pt-6">
+            <a href="index.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Accueil</a>
+            <a href="chambres.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Chambres</a>
+            <a href="experience.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Expérience</a>
+            <a href="restaurant.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Restaurant</a>
+            <a href="evenements.html" class="text-saphir-light py-3 border-b border-zinc-200">Événements</a>
+            <a href="a-propos.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">À propos</a>
+            <a href="contact.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Contact</a>
+            <a href="contact.html#reserver" class="mt-4 inline-flex justify-center py-3 rounded-sm btn-saphir-gold font-medium">Réserver</a>
+        </nav>
+    </div>
+
+    <header class="relative pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+        <div class="absolute inset-0 z-0 top-0 h-full min-h-[320px]">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1600" alt="" class="w-full h-full object-cover opacity-35" aria-hidden="true">
+            <div class="absolute inset-0 bg-gradient-saphir-page-b"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto text-center page-hero-inner">
+            <span class="text-saphir-gold font-medium tracking-widest text-sm uppercase mb-4 block">Événementiel</span>
+            <h1 class="font-serif text-4xl md:text-6xl text-white font-medium tracking-tight mb-6">Vos moments d’exception</h1>
+            <p class="text-zinc-200 max-w-2xl mx-auto text-lg">Mariages, défilés, concerts et salles de réunion — capacités sur mesure et accompagnement dédié.</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 lg:px-8 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+            <article class="rounded-sm border border-zinc-200 overflow-hidden bg-saphir-panel-30 gsap-reveal">
+                <div class="h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1000" alt="Mariage" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h2 class="font-serif text-2xl text-zinc-900 mb-2">Mariages</h2>
+                    <p class="text-zinc-600 text-sm mb-4">Réception, traiteur sur demande, espaces intérieurs et extérieurs. Capacité indicative selon configuration.</p>
+                    <p class="text-saphir-accent text-sm font-medium">Jusqu’à ~150 convives <span class="text-zinc-600 font-normal">(à confirmer)</span></p>
+                </div>
+            </article>
+            <article class="rounded-sm border border-zinc-200 overflow-hidden bg-saphir-panel-30 gsap-reveal">
+                <div class="h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1000" alt="Défilé et mode" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h2 class="font-serif text-2xl text-zinc-900 mb-2">Défilés &amp; médias</h2>
+                    <p class="text-zinc-600 text-sm mb-4">Scène, lumière et circulation pour showcases et shootings dans un cadre central à Brazzaville.</p>
+                    <p class="text-saphir-accent text-sm font-medium">Sur devis</p>
+                </div>
+            </article>
+            <article class="rounded-sm border border-zinc-200 overflow-hidden bg-saphir-panel-30 gsap-reveal">
+                <div class="h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80&w=1000" alt="Concert" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h2 class="font-serif text-2xl text-zinc-900 mb-2">Concerts &amp; soirées</h2>
+                    <p class="text-zinc-600 text-sm mb-4">Acoustique, bar et extérieurs pour faire vivre la culture locale et les tournées.</p>
+                    <p class="text-saphir-accent text-sm font-medium">Capacité selon espace <span class="text-zinc-600 font-normal">(à confirmer)</span></p>
+                </div>
+            </article>
+            <article class="rounded-sm border border-zinc-200 overflow-hidden bg-saphir-panel-30 gsap-reveal">
+                <div class="h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1560439514-4fd9643d8c8b?auto=format&fit=crop&q=80&w=1000" alt="Salle de réunion" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h2 class="font-serif text-2xl text-zinc-900 mb-2">Salles de réunion</h2>
+                    <p class="text-zinc-600 text-sm mb-4">Séminaires, boards et ateliers avec pause café et hébergement sur place.</p>
+                    <p class="text-saphir-accent text-sm font-medium">Jusqu’à ~80 personnes <span class="text-zinc-600 font-normal">(selon salle)</span></p>
+                </div>
+            </article>
+        </div>
+
+        <div id="devis" class="max-w-2xl mx-auto rounded-sm border border-zinc-200 bg-saphir-panel-40 p-8 md:p-10 gsap-reveal">
+            <h2 class="font-serif text-2xl md:text-3xl text-zinc-900 mb-2">Demande de devis</h2>
+            <p class="text-zinc-600 text-sm mb-8">Remplissez le formulaire : votre client de messagerie s’ouvrira avec le message prérempli (aucun serveur requis).</p>
+            <form id="devis-form" class="space-y-5">
+                <div>
+                    <label for="devis-nom" class="block text-sm text-zinc-600 mb-1">Nom complet</label>
+                    <input type="text" id="devis-nom" name="nom" required class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 px-4 text-zinc-900 focus:outline-none border-saphir-focus">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="devis-email" class="block text-sm text-zinc-600 mb-1">Email</label>
+                        <input type="email" id="devis-email" name="email" required class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 px-4 text-zinc-900 focus:outline-none border-saphir-focus">
+                    </div>
+                    <div>
+                        <label for="devis-tel" class="block text-sm text-zinc-600 mb-1">Téléphone</label>
+                        <input type="tel" id="devis-tel" name="tel" required class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 px-4 text-zinc-900 focus:outline-none border-saphir-focus">
+                    </div>
+                </div>
+                <div>
+                    <label for="devis-type" class="block text-sm text-zinc-600 mb-1">Type d’événement</label>
+                    <select id="devis-type" name="type" class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 px-4 text-zinc-900 focus:outline-none border-saphir-focus">
+                        <option>Mariage</option>
+                        <option>Défilé / média</option>
+                        <option>Concert / soirée</option>
+                        <option>Réunion / séminaire</option>
+                        <option>Autre</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="devis-date" class="block text-sm text-zinc-600 mb-1">Date souhaitée</label>
+                    <input type="date" id="devis-date" name="date" class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 px-4 text-zinc-900 focus:outline-none border-saphir-focus">
+                </div>
+                <div>
+                    <label for="devis-msg" class="block text-sm text-zinc-600 mb-1">Message</label>
+                    <textarea id="devis-msg" name="message" rows="4" class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 px-4 text-zinc-900 focus:outline-none border-saphir-focus resize-y" placeholder="Nombre d’invités, horaires, besoins techniques…"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-sm btn-saphir-gold font-medium transition-colors">Envoyer la demande</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-saphir-page border-t border-saphir-footer pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="lg:col-span-1">
+                    <a href="index.html" class="inline-block mb-6">
+                        <img src="logo-hotel-saphir.svg" alt="Hôtel Saphir" class="h-9 w-auto opacity-95">
+                    </a>
+                    <p class="text-base text-zinc-600 mb-6">Hôtel culturel premium accessible — Brazzaville.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-zinc-500 hover-text-saphir-gold transition-colors" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5" stroke-width="1.5"></i></a>
+                        <a href="#" class="text-zinc-500 hover-text-saphir-gold transition-colors" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5" stroke-width="1.5"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-zinc-900 font-medium mb-6 text-base tracking-wide">Contact</h4>
+                    <ul class="space-y-4 text-base text-zinc-600">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-saphir-light shrink-0 mt-0.5" stroke-width="1.5"></i>
+                            <span>Ave Alfassa, P7FJ+JWV<br>Brazzaville, Congo</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-zinc-500 shrink-0" stroke-width="1.5"></i>
+                            <div class="flex flex-col">
+                                <a href="tel:+242055284245" class="hover-text-saphir-blue transition-colors">+242 05 528 42 45</a>
+                                <a href="tel:+242069284245" class="hover-text-saphir-blue transition-colors">+242 06 928 42 45</a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-zinc-500 shrink-0" stroke-width="1.5"></i>
+                            <a href="mailto:contact@hotelsaphirbrazza.com" class="hover-text-saphir-blue transition-colors">contact@hotelsaphirbrazza.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-zinc-900 font-medium mb-6 text-base tracking-wide">Liens rapides</h4>
+                    <ul class="space-y-3 text-base text-zinc-600">
+                        <li><a href="chambres.html" class="hover-text-saphir-gold transition-colors">Chambres</a></li>
+                        <li><a href="experience.html" class="hover-text-saphir-gold transition-colors">Expérience</a></li>
+                        <li><a href="restaurant.html" class="hover-text-saphir-gold transition-colors">Restaurant &amp; bar</a></li>
+                        <li><a href="evenements.html" class="hover-text-saphir-gold transition-colors">Événements</a></li>
+                        <li><a href="a-propos.html" class="hover-text-saphir-gold transition-colors">À propos</a></li>
+                        <li><a href="contact.html" class="hover-text-saphir-gold transition-colors">Contact &amp; réservation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-zinc-900 font-medium mb-6 text-base tracking-wide">Newsletter</h4>
+                    <p class="text-base text-zinc-600 mb-4">Offres et événements à venir.</p>
+                    <form class="flex flex-col gap-3" action="#" method="post">
+                        <input type="email" name="email" placeholder="Votre adresse email" class="bg-saphir-elevated border border-saphir-ui text-zinc-900 text-base rounded-sm px-4 py-2.5 focus:outline-none border-saphir-focus transition-colors w-full">
+                        <button type="submit" class="btn-saphir-muted text-base font-medium py-2.5 rounded-sm transition-colors w-full">S’inscrire</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-saphir-footer pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
+                <p>© 2025 Hôtel Saphir Brazzaville. Tous droits réservés.</p>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                    <a href="#" class="hover-text-saphir-blue transition-colors">Mentions légales</a>
+                    <a href="#" class="hover-text-saphir-blue transition-colors">Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/24269284245" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-emerald-600 text-white shadow-lg shadow-black/40 hover:bg-emerald-500 transition-colors" aria-label="Contacter sur WhatsApp">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="js/saphir-animations.js"></script>
+    <script src="js/saphir.js"></script>
+    <script>
+        document.getElementById("devis-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var nom = document.getElementById("devis-nom").value.trim();
+            var email = document.getElementById("devis-email").value.trim();
+            var tel = document.getElementById("devis-tel").value.trim();
+            var type = document.getElementById("devis-type").value;
+            var date = document.getElementById("devis-date").value;
+            var msg = document.getElementById("devis-msg").value.trim();
+            var body = "Demande de devis — Hôtel Saphir\n\n";
+            body += "Nom : " + nom + "\n";
+            body += "Email : " + email + "\n";
+            body += "Téléphone : " + tel + "\n";
+            body += "Type : " + type + "\n";
+            body += "Date souhaitée : " + (date || "—") + "\n\n";
+            body += "Message :\n" + (msg || "—");
+            var subject = encodeURIComponent("Devis événement — " + type);
+            window.location.href = "mailto:contact@hotelsaphirbrazza.com?subject=" + subject + "&body=" + encodeURIComponent(body);
+        });
+    </script>
+</body>
+</html>
