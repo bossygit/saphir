@@ -13,31 +13,31 @@
 </head>
 <body class="bg-saphir-page text-zinc-800 text-lg antialiased">
 
-    <nav class="fixed w-full z-50 transition-all duration-300 glass-panel border-b border-zinc-200/80">
+        <nav class="saphir-nav fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0">
                     <a href="index.html" class="flex items-center gap-3">
-                        <img src="logo-hotel-saphir.svg" alt="Hôtel Saphir" class="h-10 w-auto" width="120" height="71">
+                        <img src="logo-hotel-saphir.svg" alt="Hôtel Saphir" class="logo-svg h-11 w-auto" width="120" height="71">
                     </a>
                 </div>
                 <div class="hidden lg:block">
-                    <div class="flex items-center gap-6 xl:gap-8">
-                        <a href="index.html" class="text-sm text-saphir-accent font-medium">Accueil</a>
-                        <a href="chambres.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Chambres</a>
-                        <a href="experience.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Expérience</a>
-                        <a href="restaurant.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Restaurant</a>
-                        <a href="evenements.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Événements</a>
-                        <a href="a-propos.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">À propos</a>
-                        <a href="contact.html" class="text-sm text-zinc-600 hover-text-saphir-blue transition-colors">Contact</a>
+                    <div class="flex items-center gap-7 xl:gap-9">
+                        <a href="index.html" class="nav-link active">Accueil</a>
+                        <a href="chambres.html" class="nav-link">Chambres</a>
+                        <a href="experience.html" class="nav-link">Expérience</a>
+                        <a href="restaurant.html" class="nav-link">Restaurant</a>
+                        <a href="evenements.html" class="nav-link">Événements</a>
+                        <a href="a-propos.html" class="nav-link">À propos</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
                     </div>
                 </div>
                 <div class="hidden lg:flex items-center gap-4">
-                    <a href="contact.html#reserver" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-sm btn-saphir-gold transition-colors">Réserver</a>
+                    <a href="contact.html#reserver" class="inline-flex items-center justify-center px-5 py-2.5 text-sm rounded-sm btn-saphir-nav-reserve transition-all">Réserver</a>
                 </div>
                 <div class="lg:hidden flex items-center gap-3">
-                    <a href="contact.html#reserver" class="inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded-sm btn-saphir-gold transition-colors">Réserver</a>
-                    <button type="button" id="mobile-menu-btn" class="text-zinc-600 hover-text-saphir-blue p-2 focus:outline-none u-focus-ring-saphir rounded-sm" aria-expanded="false" aria-controls="mobile-menu-panel" aria-label="Ouvrir le menu">
+                    <a href="contact.html#reserver" class="inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded-sm btn-saphir-nav-reserve transition-all">Réserver</a>
+                    <button type="button" id="mobile-menu-btn" class="nav-icon-btn p-2 focus:outline-none rounded-sm" aria-expanded="false" aria-controls="mobile-menu-panel" aria-label="Ouvrir le menu">
                         <i data-lucide="menu" class="w-6 h-6" stroke-width="1.5"></i>
                     </button>
                 </div>
@@ -46,18 +46,18 @@
     </nav>
 
     <div id="mobile-menu-panel" class="fixed inset-0 z-[60] bg-saphir-menu backdrop-blur-md lg:hidden hidden flex flex-col pt-24 px-6 pb-8" aria-hidden="true">
-        <button type="button" id="mobile-menu-close" class="absolute top-5 right-6 text-zinc-600 hover-text-saphir-blue p-2 focus:outline-none rounded-sm" aria-label="Fermer le menu">
+        <button type="button" id="mobile-menu-close" class="saphir-mobile-close-btn absolute top-5 right-6 p-2 focus:outline-none rounded-sm" aria-label="Fermer le menu">
             <i data-lucide="x" class="w-7 h-7" stroke-width="1.5"></i>
         </button>
-        <nav class="flex flex-col gap-1 text-lg border-t border-zinc-200 pt-6">
-            <a href="index.html" class="text-saphir-light py-3 border-b border-zinc-200">Accueil</a>
-            <a href="chambres.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Chambres</a>
-            <a href="experience.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Expérience</a>
-            <a href="restaurant.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Restaurant</a>
-            <a href="evenements.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Événements</a>
-            <a href="a-propos.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">À propos</a>
-            <a href="contact.html" class="text-zinc-800 py-3 border-b border-zinc-200 hover-text-saphir-blue">Contact</a>
-            <a href="contact.html#reserver" class="mt-4 inline-flex justify-center py-3 rounded-sm btn-saphir-gold font-medium">Réserver</a>
+        <nav class="flex flex-col gap-1 text-lg border-t border-white/10 pt-6">
+            <a href="index.html" class="saphir-mobile-menu-link active py-3 border-b">Accueil</a>
+            <a href="chambres.html" class="saphir-mobile-menu-link py-3 border-b">Chambres</a>
+            <a href="experience.html" class="saphir-mobile-menu-link py-3 border-b">Expérience</a>
+            <a href="restaurant.html" class="saphir-mobile-menu-link py-3 border-b">Restaurant</a>
+            <a href="evenements.html" class="saphir-mobile-menu-link py-3 border-b">Événements</a>
+            <a href="a-propos.html" class="saphir-mobile-menu-link py-3 border-b">À propos</a>
+            <a href="contact.html" class="saphir-mobile-menu-link py-3 border-b">Contact</a>
+            <a href="contact.html#reserver" class="mt-5 inline-flex justify-center py-3 rounded-sm btn-saphir-nav-reserve font-semibold text-base">Réserver</a>
         </nav>
     </div>
 
@@ -149,12 +149,12 @@
         </div>
     </section>
 
-    <section class="py-16 px-6 lg:px-8 max-w-7xl mx-auto border-y border-saphir-ui bg-saphir-panel-40">
-        <div class="max-w-3xl mx-auto text-center gsap-reveal">
-            <span class="text-saphir-gold font-medium tracking-widest text-sm uppercase mb-3 block">Avis</span>
-            <h2 class="font-serif text-2xl md:text-3xl text-zinc-900 font-medium mb-4">La voix de nos hôtes</h2>
-            <p class="text-zinc-600 mb-6">Les avis clients seront intégrés ici (Google, Tripadvisor ou témoignages vérifiés).</p>
-            <a href="https://www.google.com/search?q=Hotel+Saphir+Brazzaville" rel="noopener noreferrer" target="_blank" class="inline-flex items-center gap-2 text-saphir-light hover:text-saphir-lighter text-base font-medium">
+    <section class="saphir-reviews-band py-16 px-6 lg:px-8 gsap-reveal">
+        <div class="max-w-3xl mx-auto text-center">
+            <span class="saphir-overline" style="color:#fcd34d;">Avis clients</span>
+            <h2 class="font-serif text-2xl md:text-3xl font-medium mb-4" style="color:#fff;">La voix de nos hôtes</h2>
+            <p class="mb-6" style="color:rgba(255,255,255,0.72);">Les avis clients seront intégrés ici (Google, Tripadvisor ou témoignages vérifiés).</p>
+            <a href="https://www.google.com/search?q=Hotel+Saphir+Brazzaville" rel="noopener noreferrer" target="_blank" class="inline-flex items-center gap-2 font-semibold transition-colors" style="color:#fbbf24;">
                 Rechercher l’hôtel sur Google
                 <i data-lucide="external-link" class="w-4 h-4" stroke-width="1.5"></i>
             </a>
@@ -209,7 +209,7 @@
         </div>
     </section>
 
-    <footer class="bg-saphir-page border-t border-saphir-footer pt-20 pb-10">
+    <footer class="saphir-footer pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div class="lg:col-span-1">
@@ -225,7 +225,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-zinc-900 font-medium mb-6 text-base tracking-wide">Contact</h4>
+                    <h4 class="saphir-footer-heading">Contact</h4>
                     <ul class="space-y-4 text-base text-zinc-600">
                         <li class="flex items-start gap-3">
                             <i data-lucide="map-pin" class="w-5 h-5 text-saphir-light shrink-0 mt-0.5" stroke-width="1.5"></i>
@@ -245,7 +245,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-zinc-900 font-medium mb-6 text-base tracking-wide">Liens rapides</h4>
+                    <h4 class="saphir-footer-heading">Liens rapides</h4>
                     <ul class="space-y-3 text-base text-zinc-600">
                         <li><a href="chambres.html" class="hover-text-saphir-gold transition-colors">Chambres</a></li>
                         <li><a href="experience.html" class="hover-text-saphir-gold transition-colors">Expérience</a></li>
@@ -256,7 +256,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-zinc-900 font-medium mb-6 text-base tracking-wide">Newsletter</h4>
+                    <h4 class="saphir-footer-heading">Newsletter</h4>
                     <p class="text-base text-zinc-600 mb-4">Offres et événements à venir.</p>
                     <form class="flex flex-col gap-3" action="#" method="post">
                         <input type="email" name="email" placeholder="Votre adresse email" class="bg-saphir-elevated border border-saphir-ui text-zinc-900 text-base rounded-sm px-4 py-2.5 focus:outline-none border-saphir-focus transition-colors w-full">
