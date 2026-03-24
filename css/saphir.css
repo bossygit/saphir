@@ -51,25 +51,24 @@ html {
     background-color: var(--saphir-bg-page);
 }
 
-/* ─── HEADER / NAV — FOND BLEU SAPHIR ─── */
+/* ─── HEADER / NAV — FOND BLANC ─── */
 nav.saphir-nav {
-    background-color: var(--saphir-nav-bg) !important;
-    border-bottom: 1px solid var(--saphir-nav-border) !important;
-    /* Enlève le glass sur la nav principale */
+    background-color: #ffffff !important;
+    border-bottom: 1px solid rgba(30, 73, 118, 0.10) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    box-shadow: 0 2px 24px rgba(10, 28, 50, 0.28);
+    box-shadow: 0 2px 20px rgba(15, 42, 68, 0.08) !important;
 }
 
-/* Logo SVG doré : on cible tous les éléments SVG fills dans le logo */
+/* Logo SVG : pas de filtre sur fond blanc */
 .saphir-nav .logo-svg,
 .saphir-nav img.logo-svg {
-    filter: brightness(0) saturate(100%) invert(71%) sepia(62%) saturate(820%) hue-rotate(10deg) brightness(102%) contrast(97%);
+    filter: none;
 }
 
 /* Liens nav sur fond bleu */
 .saphir-nav .nav-link {
-    color: var(--saphir-nav-text);
+    color: #374151;
     font-size: 0.8125rem;
     letter-spacing: 0.02em;
     font-weight: 500;
@@ -84,20 +83,20 @@ nav.saphir-nav {
     left: 0;
     right: 0;
     height: 2px;
-    background: var(--saphir-gold);
+    background: var(--saphir-blue);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.22s ease;
     border-radius: 1px;
 }
 .saphir-nav .nav-link:hover {
-    color: var(--saphir-nav-text-active);
+    color: var(--saphir-blue);
 }
 .saphir-nav .nav-link:hover::after {
     transform: scaleX(1);
 }
 .saphir-nav .nav-link.active {
-    color: #ffffff;
+    color: var(--saphir-blue);
     font-weight: 600;
 }
 .saphir-nav .nav-link.active::after {
@@ -106,27 +105,28 @@ nav.saphir-nav {
 
 /* Icône hamburger sur fond bleu */
 .saphir-nav .nav-icon-btn {
-    color: rgba(255, 255, 255, 0.85);
+    color: #4b5563;
     transition: color 0.18s ease;
 }
 .saphir-nav .nav-icon-btn:hover {
-    color: var(--saphir-gold);
+    color: var(--saphir-blue);
 }
 
 /* Bouton Réserver dans la nav — version gold lumineuse sur fond bleu */
 .btn-saphir-nav-reserve {
-    background-color: var(--saphir-gold);
-    color: #0f172a;
+    background-color: var(--saphir-blue);
+    color: #ffffff;
     font-weight: 600;
     letter-spacing: 0.02em;
     font-size: 0.8125rem;
     border: none;
-    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.35);
+    border-radius: 50px;
+    box-shadow: 0 2px 12px rgba(30, 73, 118, 0.28);
     transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 .btn-saphir-nav-reserve:hover {
-    background-color: var(--saphir-gold-light);
-    box-shadow: 0 4px 18px rgba(245, 158, 11, 0.45);
+    background-color: var(--saphir-blue-dark);
+    box-shadow: 0 4px 20px rgba(30, 73, 118, 0.40);
     transform: translateY(-1px);
 }
 
@@ -139,24 +139,24 @@ nav.saphir-nav {
 
 /* ─── MENU MOBILE — fond bleu saphir ─── */
 .bg-saphir-menu {
-    background-color: #1a4168;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background-color: #ffffff;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 .saphir-mobile-menu-link {
-    color: rgba(255,255,255,0.82);
-    border-bottom-color: rgba(255,255,255,0.1) !important;
+    color: #374151;
+    border-bottom-color: #e5e7eb !important;
     transition: color 0.18s;
 }
 .saphir-mobile-menu-link:hover,
 .saphir-mobile-menu-link.active {
-    color: #ffffff;
+    color: var(--saphir-blue);
 }
 .saphir-mobile-close-btn {
-    color: rgba(255,255,255,0.75);
+    color: #6b7280;
 }
 .saphir-mobile-close-btn:hover {
-    color: var(--saphir-gold);
+    color: var(--saphir-blue);
 }
 
 .bg-saphir-elevated {

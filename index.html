@@ -7,37 +7,158 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/saphir.css">
     <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-saphir-page text-zinc-800 text-lg antialiased">
+    <style>
+        :root { --s-blue:#1e4976; --s-blue-dk:#163a62; --s-gold:#f59e0b; --s-gold-h:#fbbf24; }
 
-        <nav class="saphir-nav fixed w-full z-50 transition-all duration-300">
+        /* ── NAV BLANC ── */
+        nav.saphir-nav { background:#fff !important; border-bottom:1px solid rgba(30,73,118,.10) !important; backdrop-filter:none !important; box-shadow:0 2px 20px rgba(15,42,68,.08) !important; }
+        .saphir-nav .nav-link { color:#374151; font-size:.875rem; font-weight:500; letter-spacing:.01em; transition:color .18s; position:relative; padding-bottom:2px; }
+        .saphir-nav .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:2px; background:var(--s-blue); transform:scaleX(0); transform-origin:left; transition:transform .22s ease; border-radius:1px; }
+        .saphir-nav .nav-link:hover { color:var(--s-blue); }
+        .saphir-nav .nav-link:hover::after, .saphir-nav .nav-link.active::after { transform:scaleX(1); }
+        .saphir-nav .nav-link.active { color:var(--s-blue); font-weight:600; }
+        .saphir-nav .logo-svg { filter:none !important; }
+        .saphir-nav .nav-icon-btn { color:#4b5563; }
+        .saphir-nav .nav-icon-btn:hover { color:var(--s-blue); }
+        .btn-saphir-nav-reserve { background:var(--s-blue); color:#fff; font-weight:600; font-size:.875rem; border-radius:50px; padding:.6rem 1.5rem; transition:background .2s, transform .15s; box-shadow:0 2px 12px rgba(30,73,118,.25); display:inline-block; }
+        .btn-saphir-nav-reserve:hover { background:var(--s-blue-dk); transform:translateY(-1px); }
+        .bg-saphir-nav-scrolled { background:rgba(255,255,255,.97) !important; box-shadow:0 2px 24px rgba(15,42,68,.12) !important; }
+        #mobile-menu-panel { background:#fff !important; }
+        .saphir-mobile-menu-link { color:#374151 !important; border-color:#e5e7eb !important; }
+        .saphir-mobile-menu-link:hover, .saphir-mobile-menu-link.active { color:var(--s-blue) !important; }
+        .saphir-mobile-close-btn { color:#6b7280 !important; }
+
+        /* ── HERO SLIDER ── */
+        .hero-slider { position:relative; width:100%; height:92vh; min-height:560px; overflow:hidden; }
+        .slide { position:absolute; inset:0; opacity:0; transition:opacity .9s ease; }
+        .slide.active { opacity:1; z-index:1; }
+        .slide img { width:100%; height:100%; object-fit:cover; }
+        .slide-overlay { position:absolute; inset:0; background:linear-gradient(to right, rgba(8,22,42,.75) 35%, rgba(8,22,42,.32)); }
+        .slide-content { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:0 7% 90px; z-index:2; }
+        .slide-tag { display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--s-gold); margin-bottom:1.2rem; opacity:0; transform:translateY(22px); transition:opacity .6s .1s ease, transform .6s .1s ease; }
+        .slide-title { font-family:'Playfair Display',Georgia,serif; font-size:clamp(2.2rem,5vw,4.2rem); color:#fff; font-weight:500; line-height:1.13; max-width:680px; margin-bottom:1.2rem; opacity:0; transform:translateY(34px); transition:opacity .7s .28s ease, transform .7s .28s ease; }
+        .slide-sub { font-size:1.0625rem; color:rgba(255,255,255,.76); max-width:500px; font-weight:300; line-height:1.65; margin-bottom:2rem; opacity:0; transform:translateY(22px); transition:opacity .6s .46s ease, transform .6s .46s ease; }
+        .slide-cta { opacity:0; transform:translateY(18px); transition:opacity .55s .62s ease, transform .55s .62s ease; }
+        .slide.active .slide-tag, .slide.active .slide-title, .slide.active .slide-sub, .slide.active .slide-cta { opacity:1; transform:translateY(0); }
+        .slide.leaving .slide-tag, .slide.leaving .slide-title, .slide.leaving .slide-sub, .slide.leaving .slide-cta { opacity:0; transform:translateY(-18px); transition:opacity .4s ease, transform .4s ease; }
+        .slider-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .2s; backdrop-filter:blur(6px); }
+        .slider-arrow:hover { background:rgba(255,255,255,.28); }
+        .slider-arrow.prev { left:22px; } .slider-arrow.next { right:22px; }
+        .slider-dots { position:absolute; bottom:116px; left:7%; display:flex; gap:10px; z-index:10; }
+        .slider-dot { width:28px; height:3px; border-radius:2px; background:rgba(255,255,255,.3); cursor:pointer; transition:background .3s, width .3s; }
+        .slider-dot.active { background:var(--s-gold); width:44px; }
+
+        /* ── BOOKING BAR ── */
+        .booking-bar { background:#fff; border-radius:12px; box-shadow:0 8px 40px rgba(15,42,68,.16), 0 2px 8px rgba(15,42,68,.06); border:1px solid rgba(30,73,118,.10); }
+        .bb-divider { width:1px; background:rgba(30,73,118,.12); align-self:stretch; }
+        .bb-field label { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--s-blue); display:block; margin-bottom:.3rem; }
+        .bb-field input, .bb-field select { border:none; outline:none; background:transparent; font-size:1rem; color:#111827; font-weight:500; width:100%; }
+        .bb-field select { appearance:none; cursor:pointer; }
+        .booking-counter { display:flex; align-items:center; gap:12px; }
+        .booking-counter button { width:28px; height:28px; border-radius:50%; border:1.5px solid var(--s-blue); color:var(--s-blue); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; font-weight:600; background:transparent; transition:background .18s, color .18s; }
+        .booking-counter button:hover { background:var(--s-blue); color:#fff; }
+        .booking-counter span { font-weight:600; font-size:1.05rem; min-width:20px; text-align:center; }
+        .btn-check-avail { background:var(--s-blue); color:#fff; border-radius:8px; font-weight:700; font-size:.85rem; letter-spacing:.06em; padding:1rem 1.75rem; transition:background .2s, transform .15s, box-shadow .2s; box-shadow:0 4px 16px rgba(30,73,118,.28); white-space:nowrap; display:inline-flex; align-items:center; gap:8px; text-transform:uppercase; }
+        .btn-check-avail:hover { background:var(--s-blue-dk); transform:translateY(-1px); box-shadow:0 6px 22px rgba(30,73,118,.38); }
+
+        /* ── SECTION TITLES ── */
+        .s-over { font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--s-blue); display:block; margin-bottom:.75rem; }
+        .s-title { font-family:'Playfair Display',Georgia,serif; font-size:clamp(1.9rem,3.8vw,2.7rem); color:#0f172a; font-weight:700; line-height:1.22; }
+        .s-lead { color:#6b7280; max-width:52ch; margin:1rem auto 0; line-height:1.72; font-size:.975rem; }
+
+        /* ── ROOM ROWS ── */
+        .room-row { display:grid; grid-template-columns:280px 1fr auto; background:#fff; border-radius:12px; overflow:hidden; border:1px solid rgba(30,73,118,.10); transition:box-shadow .25s, transform .2s; }
+        .room-row:hover { box-shadow:0 12px 40px rgba(15,42,68,.12); transform:translateY(-2px); }
+        .room-row .rr-img { width:280px; height:200px; object-fit:cover; display:block; }
+        .room-row .rr-info { padding:1.75rem 2rem; }
+        .room-row .rr-meta { padding:1.75rem 2rem; text-align:right; display:flex; flex-direction:column; align-items:flex-end; justify-content:space-between; border-left:1px solid rgba(30,73,118,.08); min-width:200px; }
+        .room-badge-bl { display:inline-flex; background:var(--s-blue); color:#fff; font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.28rem .7rem; border-radius:4px; margin-bottom:.75rem; }
+        .room-stars { color:var(--s-gold); display:flex; gap:1px; margin:.45rem 0; font-size:.9rem; }
+        .rr-price-label { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#9ca3af; }
+        .rr-price { font-size:1.65rem; font-weight:700; color:#0f172a; line-height:1; }
+        .rr-price span { font-size:.88rem; font-weight:400; color:#6b7280; }
+        .rr-amenity { display:flex; align-items:center; gap:6px; font-size:.78rem; color:#6b7280; }
+        .btn-select { background:var(--s-blue); color:#fff; border-radius:7px; font-weight:600; font-size:.82rem; padding:.65rem 1.4rem; transition:background .2s, transform .15s; display:inline-flex; align-items:center; gap:5px; }
+        .btn-select:hover { background:var(--s-blue-dk); transform:translateX(3px); }
+        @media(max-width:768px){ .room-row{ grid-template-columns:1fr; } .room-row .rr-img{ width:100%; height:200px; } .room-row .rr-meta{ border-left:none; border-top:1px solid rgba(30,73,118,.08); flex-direction:row; align-items:center; text-align:left; } }
+
+        /* ── TESTIMONIAL ── */
+        .testi-band { background:linear-gradient(135deg,#0f2a44 0%,#1e4976 60%,#2460a0 100%); position:relative; overflow:hidden; }
+        .testi-band::before { content:''; position:absolute; top:-80px; right:-80px; width:400px; height:400px; border-radius:50%; background:rgba(255,255,255,.04); pointer-events:none; }
+        .rating-big { font-size:4.5rem; font-weight:800; color:#fff; line-height:1; }
+        .stars-gold { color:var(--s-gold); font-size:1.3rem; letter-spacing:2px; }
+        .quote-txt { font-family:'Playfair Display',Georgia,serif; font-size:clamp(1.2rem,2.4vw,1.9rem); color:#fff; font-weight:500; line-height:1.48; }
+
+        /* ── FACILITIES ── */
+        .fac-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(30,73,118,.08); }
+        .fac-stat { background:#fff; padding:2.5rem 2rem; }
+        .fac-label { font-size:.63rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:#9ca3af; border-bottom:1px solid #e5e7eb; padding-bottom:.75rem; margin-bottom:1.5rem; }
+        .fac-number { font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:700; color:#0f172a; line-height:1; }
+        .fac-number span { color:var(--s-blue); font-size:2rem; }
+        .fac-desc { font-size:.875rem; color:#6b7280; margin-top:.4rem; }
+        .fac-photo img { width:100%; height:100%; min-height:220px; object-fit:cover; }
+
+        /* ── OFFERS ── */
+        .offer-card { border-radius:12px; overflow:hidden; position:relative; }
+        .offer-card img { width:100%; height:320px; object-fit:cover; transition:transform .5s ease; display:block; }
+        .offer-card:hover img { transform:scale(1.04); }
+        .offer-badge { position:absolute; top:14px; left:14px; background:var(--s-blue); color:#fff; font-size:.66rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.3rem .8rem; border-radius:4px; }
+        .offer-overlay { position:absolute; bottom:0; left:0; right:0; padding:1.4rem; background:linear-gradient(to top,rgba(10,28,50,.88),transparent); }
+        .offer-title { font-family:'Playfair Display',serif; color:#fff; font-size:1.2rem; font-weight:500; }
+        .offer-sub { color:rgba(255,255,255,.68); font-size:.82rem; margin-top:.22rem; }
+
+        /* ── FAQ ── */
+        .faq-item { border-bottom:1px solid rgba(30,73,118,.10); }
+        .faq-q { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 0; cursor:pointer; font-weight:500; font-size:.975rem; color:#111827; transition:color .18s; }
+        .faq-q:hover { color:var(--s-blue); }
+        .faq-icon { color:var(--s-blue); transition:transform .3s; flex-shrink:0; }
+        .faq-item.open .faq-q { color:var(--s-blue); }
+        .faq-item.open .faq-icon { transform:rotate(180deg); }
+        .faq-ans { max-height:0; overflow:hidden; transition:max-height .35s ease, padding .35s ease; color:#6b7280; font-size:.93rem; line-height:1.72; }
+        .faq-item.open .faq-ans { max-height:200px; padding-bottom:1.2rem; }
+
+        /* ── FOOTER ── */
+        .ft-dark { background:#162333; }
+        .ft-heading { font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#fff; margin-bottom:1.25rem; }
+        .ft-dark a { color:rgba(255,255,255,.58); transition:color .18s; text-decoration:none; }
+        .ft-dark a:hover { color:var(--s-gold); }
+        .ft-dark p { color:rgba(255,255,255,.52); }
+        .soc-btn { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.58); transition:border-color .2s, color .2s, background .2s; }
+        .soc-btn:hover { border-color:var(--s-gold); color:var(--s-gold); background:rgba(245,158,11,.1); }
+
+        /* ── UTILS ── */
+        .gsap-reveal { opacity:0; transform:translateY(30px); }
+        a[aria-label="Contacter sur WhatsApp"] { transition:transform .2s, box-shadow .2s; }
+        a[aria-label="Contacter sur WhatsApp"]:hover { transform:scale(1.08) translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,.3); }
+    </style>
+</head>
+<body class="bg-white text-zinc-800 antialiased" style="font-family:'Inter',system-ui,sans-serif;">
+
+    <!-- ══ NAV BLANC ══ -->
+    <nav class="saphir-nav fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="flex items-center gap-3">
-                        <img src="logo-hotel-saphir.svg" alt="Hôtel Saphir" class="logo-svg h-11 w-auto" width="120" height="71">
-                    </a>
+                <a href="index.html">
+                    <img src="logo-hotel-saphir.svg" alt="Hôtel Saphir" class="logo-svg h-11 w-auto" width="120" height="71">
+                </a>
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link active">Accueil</a>
+                    <a href="chambres.html" class="nav-link">Chambres</a>
+                    <a href="experience.html" class="nav-link">Expérience</a>
+                    <a href="restaurant.html" class="nav-link">Restaurant</a>
+                    <a href="evenements.html" class="nav-link">Événements</a>
+                    <a href="a-propos.html" class="nav-link">À propos</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
                 </div>
                 <div class="hidden lg:block">
-                    <div class="flex items-center gap-7 xl:gap-9">
-                        <a href="index.html" class="nav-link active">Accueil</a>
-                        <a href="chambres.html" class="nav-link">Chambres</a>
-                        <a href="experience.html" class="nav-link">Expérience</a>
-                        <a href="restaurant.html" class="nav-link">Restaurant</a>
-                        <a href="evenements.html" class="nav-link">Événements</a>
-                        <a href="a-propos.html" class="nav-link">À propos</a>
-                        <a href="contact.html" class="nav-link">Contact</a>
-                    </div>
-                </div>
-                <div class="hidden lg:flex items-center gap-4">
-                    <a href="contact.html#reserver" class="inline-flex items-center justify-center px-5 py-2.5 text-sm rounded-sm btn-saphir-nav-reserve transition-all">Réserver</a>
+                    <a href="contact.html#reserver" class="btn-saphir-nav-reserve">Réservation</a>
                 </div>
                 <div class="lg:hidden flex items-center gap-3">
-                    <a href="contact.html#reserver" class="inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded-sm btn-saphir-nav-reserve transition-all">Réserver</a>
-                    <button type="button" id="mobile-menu-btn" class="nav-icon-btn p-2 focus:outline-none rounded-sm" aria-expanded="false" aria-controls="mobile-menu-panel" aria-label="Ouvrir le menu">
+                    <a href="contact.html#reserver" class="btn-saphir-nav-reserve text-sm px-4 py-2">Réserver</a>
+                    <button id="mobile-menu-btn" class="nav-icon-btn p-2 rounded-sm" aria-label="Ouvrir le menu">
                         <i data-lucide="menu" class="w-6 h-6" stroke-width="1.5"></i>
                     </button>
                 </div>
@@ -45,242 +166,479 @@
         </div>
     </nav>
 
-    <div id="mobile-menu-panel" class="fixed inset-0 z-[60] bg-saphir-menu backdrop-blur-md lg:hidden hidden flex flex-col pt-24 px-6 pb-8" aria-hidden="true">
-        <button type="button" id="mobile-menu-close" class="saphir-mobile-close-btn absolute top-5 right-6 p-2 focus:outline-none rounded-sm" aria-label="Fermer le menu">
+    <!-- Mobile menu -->
+    <div id="mobile-menu-panel" class="fixed inset-0 z-[60] lg:hidden hidden flex-col pt-24 px-6 pb-8" aria-hidden="true">
+        <button id="mobile-menu-close" class="saphir-mobile-close-btn absolute top-5 right-6 p-2 rounded-sm" aria-label="Fermer">
             <i data-lucide="x" class="w-7 h-7" stroke-width="1.5"></i>
         </button>
-        <nav class="flex flex-col gap-1 text-lg border-t border-white/10 pt-6">
-            <a href="index.html" class="saphir-mobile-menu-link active py-3 border-b">Accueil</a>
-            <a href="chambres.html" class="saphir-mobile-menu-link py-3 border-b">Chambres</a>
-            <a href="experience.html" class="saphir-mobile-menu-link py-3 border-b">Expérience</a>
-            <a href="restaurant.html" class="saphir-mobile-menu-link py-3 border-b">Restaurant</a>
-            <a href="evenements.html" class="saphir-mobile-menu-link py-3 border-b">Événements</a>
-            <a href="a-propos.html" class="saphir-mobile-menu-link py-3 border-b">À propos</a>
-            <a href="contact.html" class="saphir-mobile-menu-link py-3 border-b">Contact</a>
-            <a href="contact.html#reserver" class="mt-5 inline-flex justify-center py-3 rounded-sm btn-saphir-nav-reserve font-semibold text-base">Réserver</a>
+        <nav class="flex flex-col gap-1 text-lg border-t border-gray-100 pt-6">
+            <a href="index.html" class="saphir-mobile-menu-link active py-3 border-b border-gray-100">Accueil</a>
+            <a href="chambres.html" class="saphir-mobile-menu-link py-3 border-b border-gray-100">Chambres</a>
+            <a href="experience.html" class="saphir-mobile-menu-link py-3 border-b border-gray-100">Expérience</a>
+            <a href="restaurant.html" class="saphir-mobile-menu-link py-3 border-b border-gray-100">Restaurant</a>
+            <a href="evenements.html" class="saphir-mobile-menu-link py-3 border-b border-gray-100">Événements</a>
+            <a href="a-propos.html" class="saphir-mobile-menu-link py-3 border-b border-gray-100">À propos</a>
+            <a href="contact.html" class="saphir-mobile-menu-link py-3 border-b border-gray-100">Contact</a>
+            <a href="contact.html#reserver" class="mt-5 inline-flex justify-center py-3 rounded-full btn-saphir-nav-reserve font-semibold">Réservation</a>
         </nav>
     </div>
 
-    <section class="relative min-h-[90vh] flex items-center justify-center pt-20">
-        <div class="absolute inset-0 z-0">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true">
-            <!--
-              Vidéo hero : ajoutez assets/video/hero-saphir.mp4 (ou URL) et décommentez :
-            <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline
-              poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg">
-              <source src="assets/video/hero-saphir.mp4" type="video/mp4">
-            </video>
-            -->
-            <div class="absolute inset-0 bg-saphir-scrim-65"></div>
-            <div class="absolute inset-0 bg-gradient-saphir-hero-up"></div>
-            <div class="absolute inset-0 gradient-saphir-overlay pointer-events-none"></div>
-        </div>
-
-        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto mt-8 hero-inner">
-            <span class="text-saphir-gold font-medium tracking-widest text-sm uppercase mb-4 block">Hôtel culturel · Brazzaville</span>
-            <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl text-white font-medium tracking-tight mb-6 leading-tight">
-                Un écrin culturel au cœur de Brazzaville
-            </h1>
-            <p class="text-lg md:text-xl text-zinc-300 mb-10 max-w-2xl mx-auto font-light">
-                Hôtel premium accessible : hospitalité locale, événements vivants et confort pour vos séjours d’affaires ou de découverte.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="contact.html#reserver" class="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium rounded-sm btn-saphir-gold transition-colors w-full sm:w-auto">Réserver</a>
-                <a href="chambres.html" class="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium rounded-sm border border-zinc-400 text-white hover-border-saphir-soft hover:text-saphir-lighter transition-colors w-full sm:w-auto">Découvrir les chambres</a>
-            </div>
-        </div>
-
-        <div class="absolute bottom-0 left-0 w-full translate-y-1/2 z-20 px-6">
-            <div class="max-w-5xl mx-auto bg-saphir-elevated border border-saphir-ui rounded-lg shadow-2xl p-4 md:p-6 flex flex-col md:flex-row gap-4 items-end hero-booking">
-                <div class="w-full md:w-1/4">
-                    <label class="block text-sm text-zinc-700 mb-2">Arrivée</label>
-                    <div class="relative">
-                        <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" stroke-width="1.5"></i>
-                        <input type="date" class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 pl-10 pr-3 text-base text-zinc-900 focus:outline-none border-saphir-focus transition-colors">
-                    </div>
-                </div>
-                <div class="w-full md:w-1/4">
-                    <label class="block text-sm text-zinc-700 mb-2">Départ</label>
-                    <div class="relative">
-                        <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" stroke-width="1.5"></i>
-                        <input type="date" class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 pl-10 pr-3 text-base text-zinc-900 focus:outline-none border-saphir-focus transition-colors">
-                    </div>
-                </div>
-                <div class="w-full md:w-1/4">
-                    <label class="block text-sm text-zinc-700 mb-2">Voyageurs</label>
-                    <div class="relative">
-                        <i data-lucide="users" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" stroke-width="1.5"></i>
-                        <select class="w-full bg-saphir-input border border-zinc-200 rounded-sm py-3 pl-10 pr-3 text-base text-zinc-900 appearance-none focus:outline-none border-saphir-focus transition-colors">
-                            <option>1 Adulte</option>
-                            <option selected>2 Adultes</option>
-                            <option>2 Adultes, 1 Enfant</option>
-                        </select>
-                        <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" stroke-width="1.5"></i>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/4 pt-4 md:pt-0">
-                    <a href="contact.html#reserver" class="w-full btn-saphir-gold font-medium py-3 px-6 rounded-sm text-base transition-colors duration-200 flex items-center justify-center gap-2">
-                        Vérifier les disponibilités
-                        <i data-lucide="arrow-right" class="w-4 h-4" stroke-width="1.5"></i>
+    <!-- ══ HERO SLIDER ══ -->
+    <div class="hero-slider" id="heroSlider">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Hall Hôtel Saphir" loading="eager">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Hôtel culturel · Brazzaville</span>
+                <h1 class="slide-title">Vivez le Confort,<br>le Style et l'Élégance</h1>
+                <p class="slide-sub">Un écrin d'hospitalité locale au cœur de Brazzaville, pour vos séjours d'affaires ou de découverte.</p>
+                <div class="slide-cta" style="display:flex;gap:1rem;flex-wrap:wrap;">
+                    <a href="contact.html#reserver" style="background:var(--s-blue);color:#fff;padding:.9rem 2rem;border-radius:50px;font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 18px rgba(30,73,118,.45);">
+                        Réserver maintenant <i data-lucide="arrow-right" class="w-4 h-4" stroke-width="2"></i>
+                    </a>
+                    <a href="chambres.html" style="background:rgba(255,255,255,.12);color:#fff;padding:.9rem 2rem;border-radius:50px;font-weight:600;font-size:.9rem;border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(6px);">
+                        Nos chambres
                     </a>
                 </div>
             </div>
         </div>
-    </section>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="Chambre Hôtel Saphir" loading="lazy">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Hébergement Premium</span>
+                <h1 class="slide-title">Des Chambres Conçues<br>pour Votre Sérénité</h1>
+                <p class="slide-sub">Du Standard à la Suite Junior, chaque espace conjugue confort contemporain et ancrage culturel congolais.</p>
+                <div class="slide-cta" style="display:flex;gap:1rem;flex-wrap:wrap;">
+                    <a href="chambres.html" style="background:var(--s-blue);color:#fff;padding:.9rem 2rem;border-radius:50px;font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 18px rgba(30,73,118,.45);">
+                        Voir les chambres <i data-lucide="arrow-right" class="w-4 h-4" stroke-width="2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1600" alt="Restaurant Hôtel Saphir" loading="lazy">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Gastronomie & Culture</span>
+                <h1 class="slide-title">Saveurs Locales,<br>Ambiance Raffinée</h1>
+                <p class="slide-sub">Notre restaurant célèbre la richesse culinaire du Congo dans un cadre chaleureux et élégant au cœur de Brazzaville.</p>
+                <div class="slide-cta" style="display:flex;gap:1rem;flex-wrap:wrap;">
+                    <a href="restaurant.html" style="background:var(--s-blue);color:#fff;padding:.9rem 2rem;border-radius:50px;font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 18px rgba(30,73,118,.45);">
+                        Découvrir le restaurant <i data-lucide="arrow-right" class="w-4 h-4" stroke-width="2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <button class="slider-arrow prev" id="sliderPrev" aria-label="Précédent"><i data-lucide="chevron-left" class="w-6 h-6" stroke-width="2"></i></button>
+        <button class="slider-arrow next" id="sliderNext" aria-label="Suivant"><i data-lucide="chevron-right" class="w-6 h-6" stroke-width="2"></i></button>
+        <div class="slider-dots" id="sliderDots">
+            <div class="slider-dot active" data-dot="0"></div>
+            <div class="slider-dot" data-dot="1"></div>
+            <div class="slider-dot" data-dot="2"></div>
+        </div>
+    </div>
 
-    <section class="pt-40 pb-20 md:pt-48 md:pb-24 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            <div class="gsap-reveal">
-                <span class="text-saphir-light font-medium tracking-widest text-sm uppercase mb-4 block">Notre ADN</span>
-                <h2 class="font-serif text-3xl md:text-5xl text-zinc-900 font-medium tracking-tight mb-6 leading-tight">
-                    Culture, convivialité et élégance accessible
-                </h2>
-                <p class="text-zinc-600 mb-6 leading-relaxed">
-                    Au centre de Brazzaville, l’Hôtel Saphir allie confort contemporain et ancrage local : restaurant, bar, piscine, événements et une touche unique avec notre cadre et notre faune.
-                </p>
-                <a href="a-propos.html" class="inline-flex items-center link-saphir-gold font-medium transition-colors">
-                    Lire notre histoire
-                    <i data-lucide="arrow-right" class="ml-2 w-4 h-4" stroke-width="1.5"></i>
+    <!-- ══ BOOKING BAR ══ -->
+    <div class="relative z-20 px-4 md:px-8 -mt-8">
+        <div class="max-w-5xl mx-auto booking-bar px-6 py-5 flex flex-col md:flex-row gap-0 items-stretch">
+            <div class="bb-field flex-1 px-4 py-2">
+                <label>Arrivée</label>
+                <input type="date" id="bb-checkin">
+            </div>
+            <div class="bb-divider hidden md:block mx-2"></div>
+            <div class="bb-field flex-1 px-4 py-2">
+                <label>Départ</label>
+                <input type="date" id="bb-checkout">
+            </div>
+            <div class="bb-divider hidden md:block mx-2"></div>
+            <div class="bb-field px-4 py-2">
+                <label>Adultes</label>
+                <div class="booking-counter">
+                    <button type="button" onclick="adjustCount('adults',-1)">−</button>
+                    <span id="adults-count">1</span>
+                    <button type="button" onclick="adjustCount('adults',1)">+</button>
+                </div>
+            </div>
+            <div class="bb-divider hidden md:block mx-2"></div>
+            <div class="bb-field px-4 py-2">
+                <label>Enfants</label>
+                <div class="booking-counter">
+                    <button type="button" onclick="adjustCount('children',-1)">−</button>
+                    <span id="children-count">0</span>
+                    <button type="button" onclick="adjustCount('children',1)">+</button>
+                </div>
+            </div>
+            <div class="hidden md:block w-4"></div>
+            <div class="flex items-center pt-4 md:pt-0">
+                <a href="contact.html#reserver" class="btn-check-avail">
+                    Vérifier disponibilité <i data-lucide="search" class="w-4 h-4" stroke-width="2"></i>
                 </a>
             </div>
-            <div class="relative h-[480px] lg:h-[560px] rounded-lg overflow-hidden border border-zinc-200/70 gsap-reveal">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="Hall et accueil de l’Hôtel Saphir" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+
+    <!-- ══ CHAMBRES ══ -->
+    <section class="pt-24 pb-20 px-4 md:px-8">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14 gsap-reveal">
+                <span class="s-over">Profitez de votre séjour</span>
+                <h2 class="s-title">Explorer nos Chambres</h2>
+                <p class="s-lead text-center">Une sélection soignée d'espaces élégants. Du Standard à la Suite, chaque détail est pensé pour un séjour mémorable.</p>
+            </div>
+
+            <div class="room-row mb-6 gsap-reveal">
+                <img class="rr-img" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=600" alt="Chambre Standard">
+                <div class="rr-info">
+                    <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:#0f172a;margin-bottom:.35rem;">Chambre Standard</h3>
+                    <div class="room-stars">★★★★★</div>
+                    <p style="color:#6b7280;font-size:.875rem;line-height:1.65;margin-bottom:1rem;">Conçue pour les voyageurs qui allient confort essentiel et valeur, la chambre Standard offre un espace moderne et apaisé.</p>
+                    <div style="display:flex;gap:1.25rem;flex-wrap:wrap;">
+                        <div class="rr-amenity"><i data-lucide="users" class="w-4 h-4" stroke-width="1.5"></i> 2 personnes</div>
+                        <div class="rr-amenity"><i data-lucide="maximize-2" class="w-4 h-4" stroke-width="1.5"></i> 20 m²</div>
+                        <div class="rr-amenity"><i data-lucide="wifi" class="w-4 h-4" stroke-width="1.5"></i> Wi-Fi inclus</div>
+                    </div>
+                </div>
+                <div class="rr-meta">
+                    <div>
+                        <div class="rr-price-label">À partir de</div>
+                        <div class="rr-price">45 000 <span>FCFA/nuit</span></div>
+                    </div>
+                    <a href="chambres.html" class="btn-select mt-4">Choisir <i data-lucide="arrow-right" class="w-3.5 h-3.5" stroke-width="2"></i></a>
+                </div>
+            </div>
+
+            <div class="room-row mb-6 gsap-reveal">
+                <div class="relative">
+                    <img class="rr-img" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=600" alt="Chambre Supérieure">
+                    <div class="room-badge-bl" style="position:absolute;top:12px;left:12px;">Meilleure vente</div>
+                </div>
+                <div class="rr-info">
+                    <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:#0f172a;margin-bottom:.35rem;">Chambre Supérieure</h3>
+                    <div class="room-stars">★★★★★</div>
+                    <p style="color:#6b7280;font-size:.875rem;line-height:1.65;margin-bottom:1rem;">Pour les hôtes qui apprécient le confort raffiné, la Supérieure allie espace généreux et finitions soignées dans un cadre lumineux.</p>
+                    <div style="display:flex;gap:1.25rem;flex-wrap:wrap;">
+                        <div class="rr-amenity"><i data-lucide="users" class="w-4 h-4" stroke-width="1.5"></i> 2 personnes</div>
+                        <div class="rr-amenity"><i data-lucide="maximize-2" class="w-4 h-4" stroke-width="1.5"></i> 28 m²</div>
+                        <div class="rr-amenity"><i data-lucide="coffee" class="w-4 h-4" stroke-width="1.5"></i> Petit-déj inclus</div>
+                    </div>
+                </div>
+                <div class="rr-meta">
+                    <div>
+                        <div class="rr-price-label">À partir de</div>
+                        <div class="rr-price">65 000 <span>FCFA/nuit</span></div>
+                    </div>
+                    <a href="chambres.html" class="btn-select mt-4">Choisir <i data-lucide="arrow-right" class="w-3.5 h-3.5" stroke-width="2"></i></a>
+                </div>
+            </div>
+
+            <div class="room-row gsap-reveal">
+                <img class="rr-img" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80&w=600" alt="Suite Junior">
+                <div class="rr-info">
+                    <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:#0f172a;margin-bottom:.35rem;">Suite Junior</h3>
+                    <div class="room-stars">★★★★½</div>
+                    <p style="color:#6b7280;font-size:.875rem;line-height:1.65;margin-bottom:1rem;">Notre suite offre un espace de vie séparé, une décoration inspirée du patrimoine congolais et un confort haut de gamme.</p>
+                    <div style="display:flex;gap:1.25rem;flex-wrap:wrap;">
+                        <div class="rr-amenity"><i data-lucide="users" class="w-4 h-4" stroke-width="1.5"></i> 2–3 personnes</div>
+                        <div class="rr-amenity"><i data-lucide="maximize-2" class="w-4 h-4" stroke-width="1.5"></i> 40 m²</div>
+                        <div class="rr-amenity"><i data-lucide="tv" class="w-4 h-4" stroke-width="1.5"></i> Smart TV</div>
+                    </div>
+                </div>
+                <div class="rr-meta">
+                    <div>
+                        <div class="rr-price-label">À partir de</div>
+                        <div class="rr-price">95 000 <span>FCFA/nuit</span></div>
+                    </div>
+                    <a href="chambres.html" class="btn-select mt-4">Choisir <i data-lucide="arrow-right" class="w-3.5 h-3.5" stroke-width="2"></i></a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="saphir-reviews-band py-16 px-6 lg:px-8 gsap-reveal">
-        <div class="max-w-3xl mx-auto text-center">
-            <span class="saphir-overline" style="color:#fcd34d;">Avis clients</span>
-            <h2 class="font-serif text-2xl md:text-3xl font-medium mb-4" style="color:#fff;">La voix de nos hôtes</h2>
-            <p class="mb-6" style="color:rgba(255,255,255,0.72);">Les avis clients seront intégrés ici (Google, Tripadvisor ou témoignages vérifiés).</p>
-            <a href="https://www.google.com/search?q=Hotel+Saphir+Brazzaville" rel="noopener noreferrer" target="_blank" class="inline-flex items-center gap-2 font-semibold transition-colors" style="color:#fbbf24;">
-                Rechercher l’hôtel sur Google
-                <i data-lucide="external-link" class="w-4 h-4" stroke-width="1.5"></i>
-            </a>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-14 gsap-reveal">
+    <!-- ══ TESTIMONIAL ══ -->
+    <section class="testi-band py-20 px-6 gsap-reveal">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-                <span class="text-saphir-light font-medium tracking-widest text-sm uppercase mb-3 block">Découvrir</span>
-                <h2 class="font-serif text-3xl md:text-5xl text-zinc-900 font-medium tracking-tight">L’expérience Saphir</h2>
-                <p class="text-zinc-600 mt-4 max-w-xl">Chaque espace raconte une facette de Brazzaville — choisissez votre prochaine étape.</p>
+                <div class="rating-big">4.9</div>
+                <div class="stars-gold mt-2">★★★★★</div>
+                <p style="color:rgba(255,255,255,.52);font-size:.875rem;margin-top:.5rem;">(300+ Avis vérifiés)</p>
             </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <a href="chambres.html" class="group relative min-h-[280px] rounded-sm overflow-hidden border border-zinc-200 hover-border-saphir-card transition-all gsap-reveal">
-                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=1200" alt="Chambres" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-saphir-card-up"></div>
-                <div class="absolute inset-0 p-8 flex flex-col justify-end">
-                    <span class="text-saphir-gold text-xs font-medium tracking-wider uppercase mb-1">Hébergement</span>
-                    <h3 class="font-serif text-2xl text-white">Chambres &amp; suites</h3>
-                    <span class="text-zinc-300 text-sm mt-2 group-hover:text-white transition-colors">Standard à Suite Junior — voir les catégories</span>
-                </div>
-            </a>
-            <a href="experience.html" class="group relative min-h-[280px] rounded-sm overflow-hidden border border-zinc-200 hover-border-saphir-card transition-all gsap-reveal">
-                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1200" alt="Piscine et détente" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-saphir-card-up"></div>
-                <div class="absolute inset-0 p-8 flex flex-col justify-end">
-                    <span class="text-saphir-light text-xs font-medium tracking-wider uppercase mb-1">Lifestyle</span>
-                    <h3 class="font-serif text-2xl text-white">Expérience</h3>
-                    <span class="text-zinc-300 text-sm mt-2 group-hover:text-white transition-colors">Piscine, bar, faune, culture</span>
-                </div>
-            </a>
-            <a href="restaurant.html" class="group relative min-h-[280px] rounded-sm overflow-hidden border border-zinc-200 hover-border-saphir-card transition-all gsap-reveal">
-                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1200" alt="Restaurant" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-saphir-card-up"></div>
-                <div class="absolute inset-0 p-8 flex flex-col justify-end">
-                    <span class="text-saphir-gold text-xs font-medium tracking-wider uppercase mb-1">Gastronomie</span>
-                    <h3 class="font-serif text-2xl text-white">Restaurant &amp; bar</h3>
-                    <span class="text-zinc-300 text-sm mt-2 group-hover:text-white transition-colors">Menu, ambiance, réservations</span>
-                </div>
-            </a>
-            <a href="evenements.html" class="group relative min-h-[280px] rounded-sm overflow-hidden border border-zinc-200 hover-border-saphir-card transition-all gsap-reveal">
-                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200" alt="Événements" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-saphir-card-up"></div>
-                <div class="absolute inset-0 p-8 flex flex-col justify-end">
-                    <span class="text-saphir-light text-xs font-medium tracking-wider uppercase mb-1">Événementiel</span>
-                    <h3 class="font-serif text-2xl text-white">Mariages &amp; pro</h3>
-                    <span class="text-zinc-300 text-sm mt-2 group-hover:text-white transition-colors">Salles, capacités, demande de devis</span>
-                </div>
-            </a>
+            <div>
+                <div class="stars-gold mb-4" style="font-size:1rem;">★★★★★</div>
+                <p class="quote-txt">"Une hospitalité exceptionnelle et un confort incomparable. Le choix parfait pour un séjour relaxant et ressourçant à Brazzaville."</p>
+                <p style="color:rgba(255,255,255,.52);font-size:.875rem;font-weight:600;margin-top:1.5rem;">— Marie K., Kinshasa</p>
+            </div>
         </div>
     </section>
 
-    <footer class="saphir-footer pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                <div class="lg:col-span-1">
-                    <a href="index.html" class="inline-block mb-6">
-                        <img src="logo-hotel-saphir.svg" alt="Hôtel Saphir" class="h-9 w-auto opacity-95">
+    <!-- ══ FACILITIES ══ -->
+    <section class="py-24 px-4 md:px-8 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14 gsap-reveal">
+                <span class="s-over">Bienvenue à l'Hôtel Saphir</span>
+                <h2 class="s-title">Nos Infrastructures</h2>
+                <p class="s-lead text-center">Des chambres premium aux services complets, notre équipe veille à rendre chaque séjour confortable, du check-in au check-out.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 gsap-reveal">
+                <div class="rounded-xl overflow-hidden" style="min-height:400px;">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800" alt="Installations Saphir" style="width:100%;height:100%;object-fit:cover;min-height:400px;">
+                </div>
+                <div class="fac-grid rounded-xl overflow-hidden">
+                    <div class="fac-stat">
+                        <div class="fac-label">Chambres & suites</div>
+                        <div class="fac-number">40<span>+</span></div>
+                        <div class="fac-desc">chambres & suites premium</div>
+                    </div>
+                    <div class="fac-stat">
+                        <div class="fac-label">Visiteurs annuels</div>
+                        <div class="fac-number">3 200<span>+</span></div>
+                        <div class="fac-desc">Hôtes satisfaits</div>
+                    </div>
+                    <div class="fac-stat" style="background:#f8fafd;">
+                        <div class="fac-label">Menu signature</div>
+                        <div class="fac-number">30<span>+</span></div>
+                        <div class="fac-desc">plats & boissons signature</div>
+                    </div>
+                    <div class="fac-photo" style="background:#e8eff7;overflow:hidden;">
+                        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&q=80&w=400" alt="Service Saphir">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ OFFRES ══ -->
+    <section class="py-20 px-4 md:px-8" style="background:#f8fafd;">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14 gsap-reveal">
+                <span class="s-over">Offres exclusives</span>
+                <h2 class="s-title">Dernières Offres de l'Hôtel</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 gsap-reveal">
+                <div class="offer-card">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=600" alt="Séjour romantique">
+                    <div class="offer-badge">20% OFF</div>
+                    <div class="offer-overlay">
+                        <div class="offer-title">Séjour Romantique</div>
+                        <div class="offer-sub">20% sur les weekends en couple</div>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=600" alt="Early Bird">
+                    <div class="offer-badge">30% OFF</div>
+                    <div class="offer-overlay">
+                        <div class="offer-title">Réservation Anticipée</div>
+                        <div class="offer-sub">Économisez jusqu'à 30% sur vos chambres</div>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=600" alt="Famille">
+                    <div class="offer-overlay">
+                        <div class="offer-title">Escapade en Famille</div>
+                        <div class="offer-sub">Enfants logés & petit-déjeuner offerts</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ EXPÉRIENCE ══ -->
+    <section class="py-20 px-4 md:px-8 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14 gsap-reveal">
+                <span class="s-over">Découvrir</span>
+                <h2 class="s-title">L'Expérience Saphir</h2>
+                <p class="s-lead text-center">Chaque espace raconte une facette de Brazzaville — choisissez votre prochaine étape.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 gsap-reveal">
+                <a href="experience.html" class="group block rounded-xl overflow-hidden relative" style="aspect-ratio:3/4;">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=400" alt="Piscine" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,28,50,.82),transparent 55%);"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <div style="font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--s-gold);margin-bottom:.3rem;">Lifestyle</div>
+                        <div style="font-family:'Playfair Display',serif;color:#fff;font-size:.95rem;font-weight:500;">Piscine & Bar</div>
+                    </div>
+                </a>
+                <a href="restaurant.html" class="group block rounded-xl overflow-hidden relative" style="aspect-ratio:3/4;">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=400" alt="Restaurant" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,28,50,.82),transparent 55%);"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <div style="font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--s-gold);margin-bottom:.3rem;">Gastronomie</div>
+                        <div style="font-family:'Playfair Display',serif;color:#fff;font-size:.95rem;font-weight:500;">Restaurant</div>
+                    </div>
+                </a>
+                <a href="evenements.html" class="group block rounded-xl overflow-hidden relative" style="aspect-ratio:3/4;">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=400" alt="Événements" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,28,50,.82),transparent 55%);"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <div style="font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--s-gold);margin-bottom:.3rem;">Événementiel</div>
+                        <div style="font-family:'Playfair Display',serif;color:#fff;font-size:.95rem;font-weight:500;">Mariages & Pro</div>
+                    </div>
+                </a>
+                <a href="a-propos.html" class="group block rounded-xl overflow-hidden relative" style="aspect-ratio:3/4;">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="À propos" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,28,50,.82),transparent 55%);"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <div style="font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--s-gold);margin-bottom:.3rem;">Notre ADN</div>
+                        <div style="font-family:'Playfair Display',serif;color:#fff;font-size:.95rem;font-weight:500;">Notre Histoire</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FAQ ══ -->
+    <section class="py-20 px-4 md:px-8" style="background:#f8fafd;">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12 gsap-reveal">
+                <span class="s-over">Questions fréquentes</span>
+                <h2 class="s-title">Tout ce qu'il faut savoir</h2>
+            </div>
+            <div class="gsap-reveal">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Quels sont les horaires de check-in et check-out ?<i data-lucide="chevron-down" class="faq-icon w-5 h-5" stroke-width="2"></i></div>
+                    <div class="faq-ans">Le check-in s'effectue à partir de 14h00 et le check-out avant 12h00. Nous proposons un early check-in et late check-out selon disponibilité sur demande à la réception.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Le Wi-Fi est-il disponible dans tout l'hôtel ?<i data-lucide="chevron-down" class="faq-icon w-5 h-5" stroke-width="2"></i></div>
+                    <div class="faq-ans">Oui, le Wi-Fi haut débit est disponible gratuitement dans toutes les chambres et les espaces communs (restaurant, bar, lobby, salle de réunion).</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Proposez-vous un service de transfert depuis l'aéroport ?<i data-lucide="chevron-down" class="faq-icon w-5 h-5" stroke-width="2"></i></div>
+                    <div class="faq-ans">Nous pouvons organiser un transfert depuis l'aéroport Maya-Maya sur demande préalable. Contactez notre équipe pour les tarifs et disponibilités.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Les animaux de compagnie sont-ils acceptés ?<i data-lucide="chevron-down" class="faq-icon w-5 h-5" stroke-width="2"></i></div>
+                    <div class="faq-ans">Nous n'acceptons pas les animaux de compagnie dans l'établissement, afin de garantir le confort de tous nos hôtes.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Quelles installations pour les événements professionnels ?<i data-lucide="chevron-down" class="faq-icon w-5 h-5" stroke-width="2"></i></div>
+                    <div class="faq-ans">L'Hôtel Saphir dispose de salles modulables pour séminaires, conférences et réceptions jusqu'à 200 personnes, avec équipements audiovisuels et service traiteur.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Le petit-déjeuner est-il inclus dans le prix ?<i data-lucide="chevron-down" class="faq-icon w-5 h-5" stroke-width="2"></i></div>
+                    <div class="faq-ans">Le petit-déjeuner est inclus dans les formules Supérieure et Suite. Pour la chambre Standard, il peut être ajouté à la réservation. Notre buffet propose spécialités locales et internationales.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FOOTER SOMBRE ══ -->
+    <footer class="ft-dark pt-16 pb-8">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b" style="border-color:rgba(255,255,255,.08);">
+                <div>
+                    <a href="index.html" class="inline-block mb-5">
+                        <img src="logo-hotel-saphir.svg" alt="Hôtel Saphir" class="h-10 w-auto" style="filter:brightness(0) invert(1);">
                     </a>
-                    <p class="text-base text-zinc-600 mb-6">
-                        Hôtel culturel premium accessible — Brazzaville.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-zinc-500 hover-text-saphir-gold transition-colors" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5" stroke-width="1.5"></i></a>
-                        <a href="#" class="text-zinc-500 hover-text-saphir-gold transition-colors" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5" stroke-width="1.5"></i></a>
+                    <p style="font-size:.875rem;line-height:1.7;" class="mb-6">Hôtel culturel premium accessible — au cœur de Brazzaville, République du Congo.</p>
+                    <div style="display:flex;gap:.75rem;">
+                        <a href="#" class="soc-btn" aria-label="Facebook"><i data-lucide="facebook" class="w-4 h-4" stroke-width="1.5"></i></a>
+                        <a href="#" class="soc-btn" aria-label="Instagram"><i data-lucide="instagram" class="w-4 h-4" stroke-width="1.5"></i></a>
+                        <a href="https://wa.me/24269284245" class="soc-btn" aria-label="WhatsApp"><i data-lucide="message-circle" class="w-4 h-4" stroke-width="1.5"></i></a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="saphir-footer-heading">Contact</h4>
-                    <ul class="space-y-4 text-base text-zinc-600">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-saphir-light shrink-0 mt-0.5" stroke-width="1.5"></i>
-                            <span>Ave Alfassa, P7FJ+JWV<br>Brazzaville, Congo</span>
+                    <div class="ft-heading">Contact</div>
+                    <ul style="display:flex;flex-direction:column;gap:.85rem;font-size:.875rem;">
+                        <li style="display:flex;gap:.75rem;align-items:flex-start;color:rgba(255,255,255,.58);">
+                            <i data-lucide="map-pin" class="w-4 h-4 shrink-0 mt-0.5" stroke-width="1.5" style="color:var(--s-gold);"></i>
+                            Ave Alfassa, P7FJ+JWV<br>Brazzaville, Congo
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="w-5 h-5 text-zinc-500 shrink-0" stroke-width="1.5"></i>
-                            <div class="flex flex-col">
-                                <a href="tel:+242055284245" class="hover-text-saphir-blue transition-colors">+242 05 528 42 45</a>
-                                <a href="tel:+242069284245" class="hover-text-saphir-blue transition-colors">+242 06 928 42 45</a>
-                            </div>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-5 h-5 text-zinc-500 shrink-0" stroke-width="1.5"></i>
-                            <a href="mailto:contact@hotelsaphirbrazza.com" class="hover-text-saphir-blue transition-colors">contact@hotelsaphirbrazza.com</a>
-                        </li>
+                        <li><a href="tel:+242055284245" style="display:flex;gap:.75rem;align-items:center;"><i data-lucide="phone" class="w-4 h-4 shrink-0" stroke-width="1.5" style="color:var(--s-gold);"></i>+242 05 528 42 45</a></li>
+                        <li><a href="mailto:contact@hotelsaphirbrazza.com" style="display:flex;gap:.75rem;align-items:center;"><i data-lucide="mail" class="w-4 h-4 shrink-0" stroke-width="1.5" style="color:var(--s-gold);"></i>contact@hotelsaphirbrazza.com</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="saphir-footer-heading">Liens rapides</h4>
-                    <ul class="space-y-3 text-base text-zinc-600">
-                        <li><a href="chambres.html" class="hover-text-saphir-gold transition-colors">Chambres</a></li>
-                        <li><a href="experience.html" class="hover-text-saphir-gold transition-colors">Expérience</a></li>
-                        <li><a href="restaurant.html" class="hover-text-saphir-gold transition-colors">Restaurant &amp; bar</a></li>
-                        <li><a href="evenements.html" class="hover-text-saphir-gold transition-colors">Événements</a></li>
-                        <li><a href="a-propos.html" class="hover-text-saphir-gold transition-colors">À propos</a></li>
-                        <li><a href="contact.html" class="hover-text-saphir-gold transition-colors">Contact &amp; réservation</a></li>
+                    <div class="ft-heading">Liens rapides</div>
+                    <ul style="display:flex;flex-direction:column;gap:.6rem;font-size:.875rem;">
+                        <li><a href="chambres.html">Chambres & suites</a></li>
+                        <li><a href="experience.html">Expérience Saphir</a></li>
+                        <li><a href="restaurant.html">Restaurant & bar</a></li>
+                        <li><a href="evenements.html">Événements & mariages</a></li>
+                        <li><a href="a-propos.html">À propos de nous</a></li>
+                        <li><a href="contact.html">Réservation</a></li>
                     </ul>
-                </div>
-                <div>
-                    <h4 class="saphir-footer-heading">Newsletter</h4>
-                    <p class="text-base text-zinc-600 mb-4">Offres et événements à venir.</p>
-                    <form class="flex flex-col gap-3" action="#" method="post">
-                        <input type="email" name="email" placeholder="Votre adresse email" class="bg-saphir-elevated border border-saphir-ui text-zinc-900 text-base rounded-sm px-4 py-2.5 focus:outline-none border-saphir-focus transition-colors w-full">
-                        <button type="submit" class="btn-saphir-muted text-base font-medium py-2.5 rounded-sm transition-colors w-full">S’inscrire</button>
-                    </form>
                 </div>
             </div>
-            <div class="border-t border-saphir-footer pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
+            <div class="pt-7 flex flex-col md:flex-row justify-between items-center gap-3" style="font-size:.75rem;color:rgba(255,255,255,.35);">
                 <p>© 2025 Hôtel Saphir Brazzaville. Tous droits réservés.</p>
-                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-                    <a href="#" class="hover-text-saphir-blue transition-colors">Mentions légales</a>
-                    <a href="#" class="hover-text-saphir-blue transition-colors">Confidentialité</a>
+                <div style="display:flex;gap:1.25rem;">
+                    <a href="#" style="color:rgba(255,255,255,.35);">Mentions légales</a>
+                    <a href="#" style="color:rgba(255,255,255,.35);">Confidentialité</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/24269284245" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-emerald-600 text-white shadow-lg shadow-black/40 hover:bg-emerald-500 transition-colors" aria-label="Contacter sur WhatsApp">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/24269284245" target="_blank" rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-emerald-600 text-white shadow-xl hover:bg-emerald-500 transition-colors"
+       aria-label="Contacter sur WhatsApp">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="js/saphir-animations.js"></script>
+    <script>
+    // ── SLIDER ──
+    const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.slider-dot');
+    let cur = 0, timer;
+    function goTo(i) {
+        slides[cur].classList.add('leaving');
+        slides[cur].classList.remove('active');
+        dots[cur].classList.remove('active');
+        const old = cur;
+        cur = (i + slides.length) % slides.length;
+        slides[cur].classList.add('active');
+        dots[cur].classList.add('active');
+        setTimeout(() => slides[old].classList.remove('leaving'), 650);
+    }
+    function next() { goTo(cur + 1); }
+    function startAuto() { clearInterval(timer); timer = setInterval(next, 5500); }
+    document.getElementById('sliderNext').addEventListener('click', () => { next(); startAuto(); });
+    document.getElementById('sliderPrev').addEventListener('click', () => { goTo(cur - 1); startAuto(); });
+    dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.dot); startAuto(); }));
+    startAuto();
+
+    // ── BOOKING ──
+    const counts = { adults:1, children:0 };
+    function adjustCount(t,d){ counts[t]=Math.max(t==='adults'?1:0,counts[t]+d); document.getElementById(t+'-count').textContent=counts[t]; }
+    const today=new Date(), tmr=new Date(today); tmr.setDate(tmr.getDate()+1);
+    const fmt=d=>d.toISOString().split('T')[0];
+    const ci=document.getElementById('bb-checkin'), co=document.getElementById('bb-checkout');
+    if(ci){ ci.value=fmt(today); ci.min=fmt(today); }
+    if(co){ co.value=fmt(tmr); co.min=fmt(tmr); }
+    if(ci) ci.addEventListener('change',()=>{ const d=new Date(ci.value); d.setDate(d.getDate()+1); co.min=fmt(d); if(co.value<=ci.value) co.value=fmt(d); });
+
+    // ── FAQ ──
+    function toggleFaq(btn){ const item=btn.closest('.faq-item'); const open=item.classList.contains('open'); document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open')); if(!open) item.classList.add('open'); }
+
+    // ── NAV SCROLL ──
+    window.addEventListener('scroll',()=>{ document.querySelector('nav.saphir-nav').classList.toggle('bg-saphir-nav-scrolled',scrollY>60); });
+
+    // ── MOBILE MENU ──
+    const mb=document.getElementById('mobile-menu-btn'), mc=document.getElementById('mobile-menu-close'), mp=document.getElementById('mobile-menu-panel');
+    function openM(){ mp.classList.remove('hidden'); mp.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    function closeM(){ mp.classList.add('hidden'); mp.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    if(mb) mb.addEventListener('click',openM);
+    if(mc) mc.addEventListener('click',closeM);
+
+    // ── GSAP REVEALS ──
+    window.addEventListener('load',()=>{
+        if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.gsap-reveal').forEach(el=>{
+                gsap.to(el,{ scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}, opacity:1, y:0, duration:.75, ease:'power2.out' });
+            });
+        }
+    });
+    </script>
     <script src="js/saphir.js"></script>
 </body>
 </html>
